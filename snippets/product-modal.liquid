@@ -1,0 +1,88 @@
+{% for product in shop.products limit: 6 %}
+  <div id="product-modal-{{ product.id }}" class="product-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">×</button>
+      
+      <div class="modal-body">
+        <!-- Product Image -->
+        <div class="modal-image">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | image_url: width: 300 }}" 
+              alt="{{ product.title }}"
+            >
+          {% endif %}
+        </div>
+        
+        <!-- Product Info -->
+        <div class="modal-info">
+          <h2 class="modal-title">{{ product.title }}</h2>
+          
+          <p class="modal-price">{{ product.price | money }}</p>
+          
+          <p class="modal-description">
+            {{ product.description | strip_html | truncatewords: 30 }}
+          </p>
+          
+          <!-- Variants -->
+          {% if product.variants.size > 1 %}
+            <form id="variant-form-{{ product.id }}" class="variant-form">
+              {% for option in product.options_with_values %}
+                <div class="variant-group">
+                  <label class="variant-label">{{ option.name }}</label>
+                  
+                  {% if option.name == 'Color' %}
+                    <div class="variant-buttons">
+                      {% for value in option.values %}
+                        <button 
+                          type="button" 
+                          class="variant-btn" 
+                          data-option-name="{{ option.name }}" 
+                          data-option-value="{{ value }}"
+                        >
+                          {{ value }}
+                        </button>
+                      {% endfor %}
+                    </div>
+                  {% elsif option.name == 'Size' %}
+                    <select 
+                      class="variant-select" 
+                      data-option-name="{{ option.name }}"
+                      required
+                    >
+                      <option value="">Choose your size</option>
+                      {% for value in option.values %}
+                        <option value="{{ value }}">{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  {% else %}
+                    <select 
+                      class="variant-select" 
+                      data-option-name="{{ option.name }}"
+                    >
+                      <option value="">Select {{ option.name }}</option>
+                      {% for value in option.values %}
+                        <option value="{{ value }}">{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </form>
+          {% endif %}
+          
+          <!-- Add to Cart -->
+          <button 
+            class="add-to-cart-btn" 
+            data-product-id="{{ product.id }}"
+            data-product-title="{{ product.title }}"
+          >
+            ADD TO CART →
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-overlay"></div>
+  </div>
+{% endfor %}

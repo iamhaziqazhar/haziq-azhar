@@ -1,0 +1,139 @@
+.banner-section {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.banner-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.banner-content {
+  position: relative;
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.banner-illustration {
+  background-image: url('path-to-illustration.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 500px;
+  grid-column: 1 / -1;
+}
+
+.banner-title {
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: 'Georgia', serif;
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+
+.banner-text-box {
+  background: white;
+  padding: 40px;
+  border: 2px solid #000;
+  grid-column: 1 / 2;
+  grid-row: 2;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.banner-subtitle {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Georgia', serif;
+}
+
+.banner-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.banner-btn {
+  padding: 15px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #000;
+  background: #000;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.banner-btn:hover {
+  background: white;
+  color: #000;
+  transform: translate(5px, -5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-shop-now {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.btn-choose-gift {
+  background: #FFEB3B;
+  color: #000;
+  border-color: #FFEB3B;
+  grid-column: 2 / 3;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  margin-top: 20px;
+}
+
+.btn-choose-gift:hover {
+  background: #FDD835;
+  transform: scale(1.05);
+}
+
+.banner-info {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 1px;
+  grid-column: 1 / -1;
+  grid-row: 3;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .banner-title {
+    font-size: 32px;
+  }
+  
+  .banner-text-box {
+    grid-column: 1 / -1;
+  }
+  
+  .btn-choose-gift {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+  
+  .banner-illustration {
+    height: 300px;
+  }
+}

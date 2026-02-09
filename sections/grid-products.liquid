@@ -1,0 +1,107 @@
+
+{{ 'grid-products.css' | asset_url | stylesheet_tag }}
+    
+  <div class="grid-container">
+    <h2 class="grid-title">{{ section.settings.title }}</h2>
+    
+    <div class="products-grid">
+      {% for i in (1..6) %}
+        {% assign product_setting = 'product_' | append: i %}
+        {% assign product = section.settings[product_setting] %}
+        
+        {% if product != blank %}
+          <div class="product-card" data-product-id="{{ product.id }}">
+            <div class="product-image-wrapper">
+              {% if product.featured_image %}
+               <img 
+  src="{{ product.featured_image | image_url: width: 400 }}" 
+  alt="{{ product.title }}"
+  class="product-image"
+  width="400"
+  height="400"
+  loading="lazy"
+>
+              {% endif %}
+
+              <!-- Click trigger button -->
+              <button class="product-trigger-btn" aria-label="View product">
+                <span class="trigger-icon">⊕</span>
+              </button>
+            </div>
+            
+            <h3 class="product-title">{{ product.title }}</h3>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- Product Modal -->
+{% include 'product-modal.liquid' %}
+
+<script src="{{ 'product-modal.js' | asset_url }}"></script>
+
+<script>
+  // Initialize product modal on click
+  document.querySelectorAll('.product-trigger-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const productId = this.closest('.product-card').dataset.productId;
+      const modal = document.getElementById('product-modal-' + productId);
+      if (modal) {
+        modal.classList.add('active');
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Grid - Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Tisso vision in the wild"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "Product 4"
+    },
+    {
+      "type": "product",
+      "id": "product_5",
+      "label": "Product 5"
+    },
+    {
+      "type": "product",
+      "id": "product_6",
+      "label": "Product 6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grid - Products"
+    }
+  ]
+}
+{% endschema %}

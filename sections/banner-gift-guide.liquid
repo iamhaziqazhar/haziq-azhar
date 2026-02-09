@@ -1,0 +1,104 @@
+{{ 'banner-gift-guide.css' | asset_url | stylesheet_tag }}
+
+<section class="banner-section">
+  <div class="banner-container">
+    <div class="banner-content">
+      <!-- Title -->
+      <h1 class="banner-title">
+        {{ section.settings.title }}
+      </h1>
+
+      <!-- Decorative illustration (background) -->
+      <div class="banner-illustration">
+        <!-- Use the illustration from the design as background image -->
+      </div>
+
+      <!-- Center Text Box -->
+      <div class="banner-text-box">
+        <h2 class="banner-subtitle">
+          {{ section.settings.subtitle }}
+        </h2>
+        
+        <p class="banner-description">
+          {{ section.settings.description }}
+        </p>
+
+        <button class="banner-btn btn-shop-now">
+          {{ section.settings.button_text_shop }}
+        </button>
+      </div>
+
+      <!-- Top Right Button -->
+      <button class="banner-btn btn-choose-gift">
+        {{ section.settings.button_text_choose }}
+      </button>
+
+      <!-- Bottom Info -->
+      <div class="banner-info">
+        {{ section.settings.info_text }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Banner button animations
+  document.querySelectorAll('.banner-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', function() {
+      this.classList.add('btn-hover');
+    });
+    
+    btn.addEventListener('mouseleave', function() {
+      this.classList.remove('btn-hover');
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Banner - Gift Guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text_shop",
+      "label": "Shop Now Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "text",
+      "id": "button_text_choose",
+      "label": "Choose Gift Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "text",
+      "id": "info_text",
+      "label": "Bottom Info Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner - Gift Guide"
+    }
+  ]
+}
+{% endschema %}
