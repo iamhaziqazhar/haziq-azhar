@@ -1,0 +1,56 @@
+{{ 'section-custom-product-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-product-grid">
+  <h2 class="custom-product-grid__title">{{ section.settings.title }}</h2>
+  
+  <div class="custom-product-grid__container">
+    {% for product in section.settings.product_list %}
+      <div class="custom-product-card" data-product-handle="{{ product.handle }}">
+        <div class="custom-product-card__image">
+          <img src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}" loading="lazy">
+          <button class="custom-product-card__quick-view" data-product-handle="{{ product.handle }}">
+            Quick View
+          </button>
+        </div>
+        <div class="custom-product-card__info">
+          <h3 class="custom-product-card__title">{{ product.title }}</h3>
+          <p class="custom-product-card__price">{{ product.price | money }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div id="custom-product-modal" class="custom-product-modal">
+  <!-- Popup content will be loaded here via JavaScript -->
+</div>
+
+<script src="{{ 'custom-product-grid.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Grid",
+      "settings": {
+        "title": "Featured Products"
+      }
+    }
+  ]
+}
+{% endschema %}

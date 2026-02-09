@@ -1,0 +1,118 @@
+{{ 'section-custom-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-banner">
+  <div class="custom-banner__container">
+    <!-- Main Section -->
+    <div class="custom-banner__main">
+      <h1 class="custom-banner__main-title">{{ section.settings.main_title }}</h1>
+      <p class="custom-banner__subtitle">{{ section.settings.subtitle }}</p>
+      
+      {% if section.settings.button_1_text != blank %}
+        <a href="{{ section.settings.button_1_link }}" class="custom-banner__button custom-banner__button--primary">
+          <span>{{ section.settings.button_1_text }}</span>
+          <svg class="button-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4.16666 10H15.8333M15.8333 10L10 4.16666M15.8333 10L10 15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Secondary Section -->
+    <div class="custom-banner__secondary">
+      <h2 class="custom-banner__secondary-title">{{ section.settings.secondary_title }}</h2>
+      <div class="custom-banner__description">
+        {{ section.settings.description }}
+      </div>
+      
+      {% if section.settings.button_2_text != blank %}
+        <a href="{{ section.settings.button_2_link }}" class="custom-banner__button custom-banner__button--secondary">
+          <span>{{ section.settings.button_2_text }}</span>
+          <svg class="button-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4.16666 10H15.8333M15.8333 10L10 4.16666M15.8333 10L10 15.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Bottom Text -->
+    <div class="custom-banner__bottom-text">
+      {{ section.settings.bottom_text }}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'custom-banner.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "TISSO VISION"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_title",
+      "label": "Secondary Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner",
+      "settings": {
+        "main_title": "TISSO VISION",
+        "subtitle": "Find the ideal gift for your loved ones.",
+        "button_1_text": "CHOOSE GIFT",
+        "secondary_title": "The Gift Guide",
+        "description": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
+        "button_2_text": "SHOP NOW",
+        "bottom_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+      }
+    }
+  ]
+}
+{% endschema %}

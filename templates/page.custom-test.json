@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "custom-banner": {
+      "type": "custom-banner",
+      "settings": {
+        "title": "Exclusive Collection",
+        "subtitle": "Discover our premium selection",
+        "button_text": "Explore Now",
+        "button_link": ""
+      }
+    },
+    "custom-product-grid": {
+      "type": "custom-product-grid",
+      "settings": {
+        "title": "Featured Products",
+        "product_list": []
+      }
+    }
+  },
+  "order": ["custom-banner", "custom-product-grid"]
+}

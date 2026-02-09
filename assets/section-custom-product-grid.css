@@ -1,0 +1,128 @@
+.custom-product-grid {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.custom-product-grid__title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+.custom-product-grid__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.custom-product-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.custom-product-card:hover {
+  transform: translateY(-5px);
+}
+
+.custom-product-card__image {
+  position: relative;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+.custom-product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom-product-card__quick-view {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-product-card:hover .custom-product-card__quick-view {
+  opacity: 1;
+}
+
+.custom-product-card__info {
+  padding: 20px;
+  text-align: center;
+}
+
+.custom-product-card__title {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+}
+
+.custom-product-card__price {
+  font-weight: 600;
+  color: #667eea;
+  margin: 0;
+}
+
+/* Product Modal */
+.custom-product-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-product-modal__content {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.custom-product-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .custom-product-grid__container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .custom-product-grid {
+    padding: 40px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-product-grid__container {
+    grid-template-columns: 1fr;
+  }
+}
